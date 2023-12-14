@@ -29,11 +29,16 @@ Adicionais
 - useRef()
 - useImperativeHandle()
 - useLayoutEffect()
-  
-
-
-
-
-
  
+PREPARANDO A APLICAÇÃO PARA USO DO HOOK useState()
+
+Como mensionado anteriormente Hook Não funciona dentro de classe  
+então a primeira coisa e coneverter a classe mãe em um função e seu metodos em 
+arrow functions 
+
+de depois importar o useState()
+
+
+
+
 */
