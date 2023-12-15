@@ -38,6 +38,69 @@ arrow functions
 
 de depois importar o useState()
 
+USANDO USE EFECT 
+  
+  O componte usuarios é uma lista que mostra os usuarios que vem atraves da 
+  requisição da api, como o objetivo da aula e usar os hooks que não funcionan
+  em componente de classe agora eu tenho um problema porque componetes de função 
+  não podem usar o metodo de ciclo de vida que eo  'componentDidMount(){}'
+  e a requisição que faço pra api e justamente dentro dele.
+  
+  como resolver ?
+
+  No caso fazer uma requisição dentro de um compnet de função é um efeito colateral
+  então pra isso eu uso o useEffect, basicamente eso pegar o codigo que estava dentro do 
+  'componentDidMount(){}' e passar pra ele 
+
+  por exemplo:
+  
+  Antes
+
+  componentDidMount(){
+     fetch('https://reqres.in/api/users')
+     .then(resposta => resposta.json())
+     .then(dados =>{
+
+      
+       const usuarios = dados.data.map(usuario=> ({
+         id: usuario.id,
+         nome: usuario.first_name,
+         sobrenome: usuario.last_name,
+         email: usuario.email
+       }))
+      
+       this.setState({usuarios})
+     })
+  }
+
+  Depois 
+
+   useEffect(()=>{
+    fetch('https://reqres.in/api/users')
+    .then(resposta => resposta.json())
+    .then(dados =>{
+
+      const usuarios = dados.data.map(usuario=> ({
+        id: usuario.id,
+        nome: usuario.first_name,
+        sobrenome: usuario.last_name,
+        email: usuario.email
+      }))
+      
+      setUsuarios({usuarios})
+    })
+
+       
+   },[])
+
+  Porem ainda existe um porbelma ocorreno no backgound da aplicação 
+  toda vez que ela roda ela chama a função varias vezes consumindo memoria
+  isso acontece porque o useEffect recebe 2 parametros 1 e a gunção que faz 
+  o porcesso de requisição e o segundo são as dependencias dela então cada vez
+  que ele e chamado ele excuta a função e fica procurando pela dependencias 
+  pra resolver isso e so colocar um array vazio como segundo parametro 
+
+
 
 
 
